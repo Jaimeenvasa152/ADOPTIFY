@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        .navbar {
+        background-color: #333;
+        color: #fff;
+        padding: 15px 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-title {
+        font-size: 24px;
+        margin: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .profile-form {
+            text-align: center;
+        }
+        .profile-input {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .profile-photo {
+            margin-bottom: 20px;
+        }
+        .profile-checkbox {
+            margin-top: 20px;
+        }
+        .profile-submit {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .profile-submit:hover {
+            background-color: #45a049;
+        }
+        .profile-photo-preview {
+            max-width: 200px;
+            margin: 0 auto 20px;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <button class="back-button" onclick="goBack()"> &#8249;</button>
+        <h1 class="navbar-title">Create Profile</h1>
+    </div>
+
+    <div class="container">
+        <h1>User Profile</h1>
+        <form class="profile-form" action="#" method="post" onsubmit="return showConfirmation()">
+            <input type="text" class="profile-input" name="first_name" placeholder="First Name" value="Jaimeen" required>
+            <input type="text" class="profile-input" name="last_name" placeholder="Last Name" value="Vasa" required>
+            <input type="text" class="profile-input" name="state" placeholder="State" value="Gujarat" required>
+            <input type="text" class="profile-input" name="city" placeholder="City" value="Jamnagar" required>  
+            <input type="tel" class="profile-input" name="contact_no" placeholder="Contact No" value="1234567890" required>
+            <input type="email" class="profile-input" name="mail_id" placeholder="Mail ID" value="jaimeen@gmail.com" required>
+            <label for="profile-photo-input">Profile Photo:</label>
+            <input type="file" id="profile-photo-input" class="profile-photo" name="profile_photo" accept="image/*" onchange="previewPhoto(event)">
+            <img class="profile-photo-preview" id="profile-photo-preview" src="#" alt="Preview">
+            <button type="submit" class="profile-submit">Update Profile</button>
+        </form>
+    </div>
+    
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+        function showConfirmation() {
+            alert("Profile updated");
+            return true; // Returning true to submit the form
+        }
+
+        function previewPhoto(event) {
+            const preview = document.getElementById('profile-photo-preview');
+            const file = event.target.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function() {
+                preview.src = reader.result;
+            }
+
+            if (file) {
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</body>
+</html>

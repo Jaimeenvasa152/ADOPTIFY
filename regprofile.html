@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <style>
+          body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        .navbar {
+        background-color: #333;
+        color: #fff;
+        padding: 15px 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-title {
+        font-size: 24px;
+        margin: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .profile-form {
+            text-align: center;
+        }
+        .profile-input {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .profile-photo {
+            margin-bottom: 20px;
+        }
+        .profile-submit {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .profile-submit:hover {
+            background-color: #45a049;
+        }
+        .profile-photo-preview {
+            max-width: 200px;
+            margin: 0 auto 20px;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <button class="back-button" onclick="goBack()"> &#8249;</button>
+        <h1 class="navbar-title">Create Profile</h1>
+    </div>
+    <div class="container">
+        <h1>User Profile</h1>
+        <form class="profile-form" id="profileForm" action="questions.html" method="get">
+            <input type="text" class="profile-input" id="username" name="username" placeholder="Username" required>
+            <input type="text" class="profile-input" id="fullName" name="fullName" placeholder="Full Name" required>
+            <input type="tel" class="profile-input" id="contactNo" name="contactNo" placeholder="Contact No" required>
+            <input type="text" class="profile-input" id="city" name="city" placeholder="City" required>
+            <input type="text" class="profile-input" id="state" name="state" placeholder="State" required>
+            <label for="profilePhoto">Profile Photo:</label>
+            <input type="file" class="profile-photo" id="profilePhoto" name="profilePhoto" accept="image/*" onchange="previewPhoto(event)" required>
+            <img class="profile-photo-preview" id="profile-photo-preview" src="#" alt="Preview">
+            <button type="submit" class="profile-submit" onclick="submitForm()">Create User</button>
+        </form>
+    </div>
+    
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+        
+        function previewPhoto(event) {
+            const preview = document.getElementById('profile-photo-preview');
+            const file = event.target.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function() {
+                preview.src = reader.result;
+            }
+
+            if (file) {
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function submitForm() {
+            // Get form data
+            const formData = new FormData(document.getElementById('profileForm'));
+
+            // Perform any validation or processing here before submitting
+
+            // Redirect to another page
+            window.location.href = 'questions.html';
+        }
+    </script>
+</body>
+</html>

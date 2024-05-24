@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pet Details</title>
+<style>
+  
+
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+  }
+
+  .navbar {
+    background-color: #333;
+    color: #fff;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  .navbar-title {
+    font-size: 24px;
+    margin: 0;
+  }
+
+  .back-button {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+  }
+
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    max-width: 1200px;
+    margin: 20px auto;
+  }
+
+  .card {
+    width: 300px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    position: relative; /* Added */
+  }
+
+  .card:hover {
+    transform: translateY(-5px);
+  }
+
+  .card-content {
+    padding: 20px;
+  }
+
+  .product-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+
+  .product-info h2 {
+    margin: 0;
+    font-size: 20px;
+    color: #333;
+  }
+
+  .product-info .like-icon {
+    font-size: 24px;
+    color: #ccc; /* Default color */
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+
+  .product-info .like-icon.liked {
+    color: red; /* Liked color */
+  }
+
+  .product-info p {
+    margin: 0;
+    font-size: 16px;
+    color: #666;
+  }
+
+  .details {
+    display: none;
+    padding: 20px;
+    background-color: #f9f9f9;
+  }
+  
+  .product-image {
+    width: 100%;
+    height: auto;
+    border-radius: 10px 10px 0 0;
+  }
+</style>
+</head>
+<body>
+
+<div class="navbar">
+  <button class="back-button" onclick="goBack()">&#8249;</button>
+  <h1 class="navbar-title">Pet Details</h1>
+</div>
+
+<div class="container">
+  <div class="card" onclick="showDetails(1)">
+    <img class="product-image" src="Assests/1251253.jpg" alt="Shiro Image">
+    <div class="card-content">
+      <div class="product-info">
+        <h2>Shiro</h2>
+        <span class="like-icon" onclick="toggleLike(this)">&#x2661;</span>
+      </div>
+      <p>Description of Shiro. Click for more details.</p>
+    </div>
+    <div class="details" id="details1">
+      <p>More details about Shiro go here.</p>
+    </div>
+  </div>
+
+  <div class="card" onclick="showDetails(2)">
+    <img class="product-image" src="Assests/50.jpg" alt="Tommy Image">
+    <div class="card-content">
+      <div class="product-info">
+        <h2>Tommy</h2>
+        <span class="like-icon" onclick="toggleLike(this)">&#x2661;</span>
+      </div>
+      <p>Description of Tommy. Click for more details.</p>
+    </div>
+    <div class="details" id="details2">
+      <p>More details about Tommy go here.</p>
+    </div>
+  </div>
+
+  <div class="card" onclick="showDetails(3)">
+    <img class="product-image" src="Assests/51.jpg" alt="Bruce Image">
+    <div class="card-content">
+      <div class="product-info">
+        <h2>Bruce</h2>
+        <span class="like-icon" onclick="toggleLike(this)">&#x2661;</span>
+      </div>
+      <p>Description of Bruce. Click for more details.</p>
+    </div>
+    <div class="details" id="details3">
+      <p>More details about Bruce go here.</p>
+    </div>
+  </div>
+
+  <div class="card" onclick="showDetails(4)">
+    <img class="product-image" src="Assests/52.jpg" alt="Tony Image">
+    <div class="card-content">
+      <div class="product-info">
+        <h2>Tony</h2>
+        <span class="like-icon" onclick="toggleLike(this)">&#x2661;</span>
+      </div>
+      <p>Description of Tony. Click for more details.</p>
+    </div>
+    <div class="details" id="details4">
+      <p>More details about Tony go here.</p>
+    </div>
+  </div>
+
+  <div class="card" onclick="showDetails(5)">
+    <img class="product-image" src="Assests/54.jpeg" alt="Max Image">
+    <div class="card-content">
+      <div class="product-info">
+        <h2>Max</h2>
+        <span class="like-icon" onclick="toggleLike(this)">&#x2661;</span>
+      </div>
+      <p>Description of Max. Click for more details.</p>
+    </div>
+    <div class="details" id="details5">
+      <p>More details about Max go here.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  function showDetails(productId) {
+    var details = document.getElementById("details" + productId);
+    if (details.style.display === "none") {
+      details.style.display = "block";
+    } else {
+      details.style.display = "none";
+    }
+  }
+
+  function goBack() {
+    window.history.back();
+  }
+
+  function toggleLike(icon) {
+    icon.classList.toggle("liked");
+  }
+
+  var likedProducts = JSON.parse(localStorage.getItem("likedProducts")) || [];
+  var container = document.getElementById("likedProductsContainer");
+
+  likedProducts.forEach(function(productName) {
+    var card = createCard(productName);
+    container.appendChild(card);
+  });
+
+  function toggleLike(icon, productId) {
+  icon.classList.toggle("liked");
+  var index = likedProducts.indexOf(productId);
+  if (index === -1) {
+    likedProducts.push(productId);
+  } else {
+    likedProducts.splice(index, 1);
+  }
+  localStorage.setItem("likedProducts", JSON.stringify(likedProducts));
+
+  // Remove card if unliked
+  if (index !== -1) {
+    var cardToRemove = document.getElementById(productId);
+    if (cardToRemove) {
+      container.removeChild(cardToRemove);
+    }
+  }
+}
+
+
+  function createCard(productName) {
+    var card = document.createElement("div");
+    card.id = productName; // Set id for easy removal
+    card.classList.add("card");
+    card.innerHTML = `
+      <div class="card-content">
+        <div class="product-info">
+          <h2>${productName}</h2>
+          <span class="like-icon" onclick="toggleLike(this, '${productName}')">&#x2661;</span>
+        </div>
+        <p>Description of ${productName}. Click for more details.</p>
+      </div>
+      <div class="details">
+        <p>More details about ${productName} go here.</p>
+      </div>
+    `;
+    return card;
+  }
+</script>
+
+</body>
+</html>

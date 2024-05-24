@@ -1,0 +1,33 @@
+body {
+            background-image: url('Assests/1251253.jpg');
+            background-size:auto;
+            font-family: Arial, sans-serif;
+        }
+.form-container {
+            background-color: rgba(255, 255, 255, 0.8);
+            margin-left: 900px;
+            margin-top: 80px;
+            padding: 20px;
+            border-radius: 8px;
+            width: 300px;
+        }
+.form-container input[type="text"], .form-container input[type="password"] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+.form-container button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+.form-container button:hover {
+            opacity: 0.8;
+        }

@@ -1,0 +1,12 @@
+*{
+    background-color: cadetblue;
+}
+.why {
+  height: 300px;
+  width: auto;
+} 
+.d1{
+    display: flex;
+    justify-content: center;
+    background: linear-gradient (135deg, rgb(122, 220, 180) 0%, rgb(0, 208, 130) 100%);
+}

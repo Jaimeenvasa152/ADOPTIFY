@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Adoption Questionnaire</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        .navbar {
+        background-color: #333;
+        color: #fff;
+        padding: 15px 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-title {
+        font-size: 24px;
+        margin: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .question label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .question textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            resize: vertical;
+            font-size: 16px;
+        }
+        .submit-btn {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .submit-btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <button class="back-button" onclick="goBack()"> &#8249;</button>
+        <h1 class="navbar-title">Questionnaire</h1>
+      </div>
+    <div class="container">
+        <h1>Pet Adoption Questionnaire</h1>
+        <form id="adoptionForm" action="log.php" method="get">
+            <div class="question">
+                <label for="reason">Why do you want to adopt a pet?</label>
+                <textarea id="reason" name="reason" rows="4" required></textarea>
+            </div>
+            <div class="question">
+                <label for="ownedPets">Have you owned pets before? If so, what happened to them?</label>
+                <textarea id="ownedPets" name="ownedPets" rows="4" required></textarea>
+            </div>
+            <div class="question">
+                <label for="petType">What kind of pet are you interested in adopting?</label>
+                <textarea id="petType" name="petType" rows="4" required></textarea>
+            </div>
+            <div class="question">
+                <label for="timeDedication">How much time are you willing to dedicate to taking care of a pet each day?</label>
+                <textarea id="timeDedication" name="timeDedication" rows="4" required></textarea>
+            </div>
+            <div class="question">
+                <label for="financialResponsibilities">Are you aware of the financial responsibilities associated with pet ownership, including vet bills, food, and supplies?</label>
+                <textarea id="financialResponsibilities" name="financialResponsibilities" rows="4" required></textarea>
+            </div>
+            <div class="question">
+                <label for="livingEnvironment">Can you provide a stable and suitable living environment for a pet?</label>
+                <textarea id="livingEnvironment" name="livingEnvironment" rows="4" required></textarea>
+            </div>
+            <div class="question">
+                <label for="commitment">Are you prepared to commit to caring for a pet for its entire life, which could be 10 years or more?</label>
+                <textarea id="commitment" name="commitment" rows="4" required></textarea>
+            </div>
+            <div class="question">
+                <label for="healthConcerns">Do you have any allergies or health concerns that may affect your ability to care for a pet?</label>
+                <textarea id="healthConcerns" name="healthConcerns" rows="4" required></textarea>
+            </div>
+            <div class="question">
+                <label for="restrictions">Are there any restrictions or regulations in your living space or community regarding pet ownership?</label>
+                <textarea id="restrictions" name="restrictions" rows="4" required></textarea>
+            </div>
+            <div class="question">
+                <label for="challenges">How do you plan to address challenges such as behavioral issues, training, or medical emergencies that may arise with a pet?</label>
+                <textarea id="challenges" name="challenges" rows="4" required></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+      document.getElementById('adoptionForm').addEventListener('submit', function(event) {
+    const form = event.target;
+    const inputs = form.querySelectorAll('textarea');
+    let isValid = true;
+
+    inputs.forEach(function(input) {
+        if (!input.value.trim()) {
+            isValid = false;
+        }
+    });
+
+    if (!isValid) {
+        alert('Please fill out all the fields.');
+        event.preventDefault(); // Prevent form submission
+    } else {
+        // Redirect to "log.html" after form submission
+        window.location.href = form.getAttribute('action');
+    }
+});
